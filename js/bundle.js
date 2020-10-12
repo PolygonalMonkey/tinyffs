@@ -3265,11 +3265,8 @@ $(function () {
             // var popup = $("#photo-popup").dxPopup("instance");
             // console.log(e.file.dataItem.path);
 
-            var sound = new Howl({
-                src: [e.file.dataItem.path]
-              });
-              
-            sound.play();
+
+            playSong(e);
 
             // popup.option({
             //     "title": e.file.name,
@@ -3293,6 +3290,24 @@ $(function () {
         //     console.log(e);
         // }
     });
+
+    
+    
+    var currSound = null
+    
+    function playSong(e){
+
+        if(currSound != e.file.dataItem.path){
+            var sound = new Howl({
+                src: [e.file.dataItem.path]
+              });
+              
+            currSound = e.file.dataItem.path
+            sound.play();
+        }
+        
+    }
+
 
     // PHOTO POP UP 
     // $("#photo-popup").dxPopup({
